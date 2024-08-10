@@ -68,7 +68,7 @@ const Navbar = () => {
           <h2 className="font-semibold text-primary-text text-lg">
             Categories
           </h2>
-          <FaBars />
+          <FaBars className="cursor-pointer" />
         </div>
         {/* nav links */}
         <div>
