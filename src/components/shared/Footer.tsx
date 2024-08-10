@@ -4,11 +4,14 @@ import { GrFacebookOption } from "react-icons/gr";
 import { FaInstagram } from "react-icons/fa";
 import { CiTwitter } from "react-icons/ci";
 import Link from "next/link";
+import { MdOutlineEmail } from "react-icons/md";
+import { MdOutlinePhoneAndroid } from "react-icons/md";
+import { VscLocation } from "react-icons/vsc";
 
 const Footer = () => {
   return (
     <div>
-      <footer className="footer bg-[#10235e] p-10 text-white">
+      <footer className="footer bg-[#10235e] p-5 md:p-10 text-white">
         <aside className="flex items-center">
           <Image src={logo} alt="logo" className="w-10 h-10" />
           <div>
@@ -48,6 +51,23 @@ const Footer = () => {
           </div>
         </nav>
       </footer>
+      <div className="bg-[#283c77] text-white py-4 md:px-10 px-5 flex flex-col md:flex-row md:items-center justify-between gap-5 md:gap-0">
+        <div className="flex md:items-center gap-3 md:gap-6 flex-col md:flex-row">
+          <div className="flex  items-center gap-1">
+            <MdOutlineEmail className="text-2xl " />
+            <h2 className="font-light text-sm">tanjil.ahamed0199@gmail.com</h2>
+          </div>
+          <div className="flex  items-center gap-1">
+            <MdOutlinePhoneAndroid className="text-2xl " />
+            <h2 className="font-light text-sm">+8801996643722</h2>
+          </div>
+          <div className="flex  items-center gap-1">
+            <VscLocation className="text-2xl " />
+            <h2 className="font-light text-sm">Saheprotap,Narsingdi</h2>
+          </div>
+        </div>
+        <h2 className="text-sm hidden md:inline">Ve safe</h2>
+      </div>
     </div>
   );
 };
