@@ -17,19 +17,23 @@ const Navbar = () => {
     <div className="">
       {/* navbar row 1 */}
       <div className="navbar">
-        <div className="navbar-start gap-2 items-center w-1/3">
-          <Image src={logo} alt="logo" className="h-16 w-16" />
+        {/* row - 1 */}
+        <div className="navbar-start gap-2 items-center lg:w-1/3">
+          <Image src={logo} alt="logo" className=" h-10 w-10 lg:h-16 lg:w-16" />
           <div className="">
             <Link
               href={"/"}
-              className="text-2xl leading-3 font-semibold text-primary-text"
+              className="lg:text-2xl md:leading-3 font-semibold text-primary-text"
             >
-              MediZone
+              MEDIZONE
             </Link>
-            <h4 className="font-medium text-primary-text">safe life</h4>
+            <h4 className="md:font-medium text-primary-text text-sm md:text-base">
+              SAFE LIFE
+            </h4>
           </div>
         </div>
-        <div className="navbar-center hidden lg:flex w-1/3">
+
+        <div className="navbar-center hidden lg:flex lg:w-1/3">
           <label className="input input-bordered flex items-center gap-2 rounded-full">
             <input type="text" className="grow " placeholder="Search" />
             <svg
@@ -46,24 +50,26 @@ const Navbar = () => {
             </svg>
           </label>
         </div>
-        <div className="navbar-end w-1/3 flex items-center justify-between">
+        <div className="navbar-end lg:w-1/3 flex items-center xl:justify-between">
           <h2
             onClick={handleClick}
-            className="cursor-pointer text-primary-text"
+            className="cursor-pointer text-primary-text hidden xl:inline"
           >
             tanjil.ahamed0199@gmail.com
           </h2>
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-4 lg:gap-5">
             <RxAvatar className="text-2xl font-semibold cursor-pointer" />
-            <FaHeart className="text-2xl font-semibold cursor-pointer" />
+            <FaHeart className="text-2xl font-semibold cursor-pointer hidden lg:inline" />
             <MdOutlineShoppingBag className="text-2xl font-semibold cursor-pointer" />
+            <FaBars className=" text-xl font-semibold cursor-pointer lg:hidden" />
           </div>
         </div>
       </div>
 
-      <hr className="border my-4" />
+      <hr className="border my-4 hidden lg:inline" />
+
       {/* navbar row 2 */}
-      <div className="flex justify-between items-center">
+      <div className="hidden lg:flex justify-between items-center ">
         <div className="flex items-center gap-2">
           <h2 className="font-semibold text-primary-text text-lg">
             Categories
