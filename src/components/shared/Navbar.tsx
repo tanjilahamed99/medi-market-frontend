@@ -66,7 +66,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <hr className="border my-4 hidden lg:inline" />
+      <hr className="border my-4 hidden lg:block w-full" />
 
       {/* navbar row 2 */}
       <div className="hidden lg:flex justify-between items-center ">
@@ -79,19 +79,19 @@ const Navbar = () => {
         {/* nav links */}
         <div>
           <ul className="flex items-center gap-5 text-primary-text font-semibold">
-            <Link href={"/"}>
+            <Link className="hover:underline" href={"/"}>
               <li>Home</li>
             </Link>
-            <Link href={"/"}>
+            <Link className="hover:underline" href={"/"}>
               <li>Medical Supplies</li>
             </Link>
 
-            <Link href={"/"}>
+            <Link className="hover:underline" href={"/"}>
               {" "}
               <li>SHOP</li>
             </Link>
 
-            <Link href={"/"}>
+            <Link className="hover:underline" href={"/"}>
               {" "}
               <li>BLOG</li>
             </Link>
