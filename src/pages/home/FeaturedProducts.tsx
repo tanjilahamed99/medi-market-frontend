@@ -1,6 +1,5 @@
 import MedicineCard from "@/components/shared/MedicineCard";
 import SectionTitle from "@/components/shared/SectionTitle";
-// import img1 from "../../../public/images/card/1.png";
 
 const FeaturedProducts = () => {
   const data = [

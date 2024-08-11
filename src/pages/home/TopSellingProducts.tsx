@@ -1,129 +1,131 @@
 import MedicineCard from "@/components/shared/MedicineCard";
 import SectionTitle from "@/components/shared/SectionTitle";
+import Link from "next/link";
 
 const TopSellingProducts = () => {
   const data = [
     {
-      name: "Aspirin",
-      description: "Used to reduce pain, fever, or inflammation.",
-      image: "",
-      discount: "10%",
-      review: ["Works well!", "Very effective."],
-      quantity: "50",
-      ratings: "4.5",
-      company: "PharmaCo",
-      type: "Painkiller",
-      price: "10.99",
-      popular: true,
-    },
-    {
-      name: "Amoxicillin",
-      description: "Antibiotic used to treat bacterial infections.",
-      image: "",
+      name: "Paracetamol",
+      description: "Used to treat pain and reduce fever.",
+      image: "https://i.ibb.co/q1fD6GC/pngwing-com-25.png",
       discount: "5%",
-      review: ["Cleared my infection quickly.", "No side effects."],
-      quantity: "30",
-      ratings: "4.7",
-      company: "MediLife",
-      type: "Antibiotic",
-      price: "15.49",
-      popular: true,
-    },
-    {
-      name: "Cetirizine",
-      description: "Used to relieve allergy symptoms.",
-      image: "",
-      discount: "15%",
-      review: ["Stopped my sneezing in no time.", "Great for allergies."],
-      quantity: "100",
-      ratings: "4.2",
-      company: "AllerGen",
-      type: "Antihistamine",
-      price: "8.99",
-      popular: true,
-    },
-    {
-      name: "Ibuprofen",
-      description:
-        "Nonsteroidal anti-inflammatory drug (NSAID) used for pain relief and fever reduction.",
-      image: "",
-      discount: "",
-      review: ["Helps with my headaches.", "Good for reducing inflammation."],
-      quantity: "100",
-      ratings: "4.6",
-      company: "PainRelief Co.",
+      review: ["Effective for pain relief.", "Works quickly to reduce fever."],
+      quantity: "500mg, 10 tablets",
+      ratings: "4.9",
+      company: "Square Pharmaceuticals",
       type: "Painkiller",
-      price: "9.99",
-      popular: true,
-    },
-    {
-      name: "Metformin",
-      description:
-        "Medication used to treat type 2 diabetes by controlling blood sugar levels.",
-      image: "",
-      discount: "8%",
-      review: [
-        "Effective in managing my blood sugar.",
-        "No major side effects.",
-      ],
-      quantity: "60",
-      ratings: "4.4",
-      company: "GlucoseCare",
-      type: "Antidiabetic",
-      price: "12.79",
+      price: "1.00",
       popular: true,
     },
     {
       name: "Omeprazole",
       description:
-        "Proton pump inhibitor used to treat acid reflux and ulcers.",
-      image: "",
+        "Used to treat acid reflux, ulcers, and other stomach issues.",
+      image: "https://i.ibb.co/v41p6C9/pngwing-com-24.png",
       discount: "10%",
-      review: ["Relieved my acid reflux quickly.", "Good for long-term use."],
-      quantity: "40",
-      ratings: "4.3",
-      company: "StomachCare",
+      review: ["Great for reducing acidity.", "Provides quick relief."],
+      quantity: "20mg, 10 capsules",
+      ratings: "4.6",
+      company: "Beximco Pharmaceuticals",
       type: "Antacid",
-      price: "11.29",
-      popular: false,
-    },
-    {
-      name: "Lisinopril",
-      description:
-        "ACE inhibitor used to treat high blood pressure and heart failure.",
-      image: "",
-      discount: "",
-      review: ["Keeps my blood pressure in check.", "Minimal side effects."],
-      quantity: "90",
-      ratings: "4.5",
-      company: "HeartHealth",
-      type: "Antihypertensive",
-      price: "14.49",
+      price: "7.00",
       popular: true,
     },
     {
-      name: "Cetirizine",
-      description: "Antihistamine used to treat allergy symptoms.",
-      image: "",
+      name: "Napa",
+      description: "Paracetamol used to treat pain and reduce fever.",
+      image: "https://i.ibb.co/r7Ptchz/pngwing-com-28.png",
       discount: "5%",
-      review: ["Stops my sneezing.", "Great for hay fever."],
-      quantity: "30",
-      ratings: "4.2",
-      company: "AllergyFree",
+      review: ["Effective for fever and pain.", "Safe for regular use."],
+      quantity: "500mg, 10 tablets",
+      ratings: "4.9",
+      company: "Beximco Pharmaceuticals",
+      type: "Painkiller",
+      price: "1.00",
+      popular: true,
+    },
+    {
+      name: "Plant B",
+      description: "Omeprazole used to treat acid reflux and stomach ulcers.",
+      image: "https://i.ibb.co/DgWsK7m/pngwing-com-27.png",
+      discount: "7%",
+      review: ["Great for acid relief.", "Quickly alleviates discomfort."],
+      quantity: "20mg, 10 capsules",
+      ratings: "4.7",
+      company: "Square Pharmaceuticals",
+      type: "Antacid",
+      price: "7.00",
+      popular: true,
+    },
+    {
+      name: "Fexo",
+      description: "Fexofenadine used to treat allergy symptoms.",
+      image: "https://i.ibb.co/vP2J4Z6/pngwing-com-31.png",
+      discount: "6%",
+      review: ["Effective for allergies.", "No drowsiness."],
+      quantity: "120mg, 10 tablets",
+      ratings: "4.6",
+      company: "Incepta Pharmaceuticals",
       type: "Antihistamine",
-      price: "7.99",
+      price: "6.00",
+      popular: true,
+    },
+    {
+      name: "Losectil",
+      description: "Omeprazole used to reduce stomach acid and treat ulcers.",
+      image: "https://i.ibb.co/pZvwJ0y/pngwing-com-32.png",
+      discount: "8%",
+      review: ["Works well for acidity.", "Good for long-term use."],
+      quantity: "20mg, 10 capsules",
+      ratings: "4.7",
+      company: "Eskayef Pharmaceuticals",
+      type: "Antacid",
+      price: "6.50",
+      popular: true,
+    },
+    {
+      name: "Histacin",
+      description:
+        "Chlorpheniramine maleate used to treat allergic conditions.",
+      image: "https://i.ibb.co/2F6vxCd/pngwing-com-29.png",
+      discount: "5%",
+      review: ["Good for colds and allergies.", "Works quickly."],
+      quantity: "4mg, 10 tablets",
+      ratings: "4.5",
+      company: "Square Pharmaceuticals",
+      type: "Antihistamine",
+      price: "2.00",
+      popular: true,
+    },
+    {
+      name: "Napa Extend",
+      description: "Extended-release Paracetamol for long-lasting pain relief.",
+      image: "https://i.ibb.co/87W2mbJ/pngwing-com-33.png",
+      discount: "6%",
+      review: ["Lasts longer than regular Napa.", "Great for chronic pain."],
+      quantity: "665mg, 10 tablets",
+      ratings: "4.8",
+      company: "Beximco Pharmaceuticals",
+      type: "Painkiller",
+      price: "3.00",
       popular: true,
     },
   ];
   return (
     <div className="my-20">
-      <SectionTitle title="TOP SELLING" />
+      <SectionTitle title="TOP SELLING PRODUCTS" />
 
       {/* content */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-6 mt-4">
-        {/* {data?.map((i, idx) => (
+        {data?.map((i, idx) => (
           <MedicineCard key={idx} data={i} />
-        ))} */}
+        ))}
+      </div>
+
+      <div className="flex justify-end mt-5">
+        <Link href={"/shop"}>
+          <button className="btn btn-outline text-end">See More</button>
+        </Link>
       </div>
     </div>
   );

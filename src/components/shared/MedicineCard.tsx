@@ -3,12 +3,9 @@
 import Image from "next/image";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 import { MdOutlineAttachMoney } from "react-icons/md";
-import { MdOutlineStarHalf } from "react-icons/md";
-import { MdOutlineStarOutline } from "react-icons/md";
-import { MdOutlineStarPurple500 } from "react-icons/md";
 import Rating from "react-rating";
 
-const MedicineCard = ({ data }) => {
+const MedicineCard = ({ data }: any) => {
   return (
     <div>
       <div className=" p-4 shadow rounded-md relative border">
@@ -46,7 +43,7 @@ const MedicineCard = ({ data }) => {
 
           <button
             className="border-b-2 border-black pb-[2px]  hover:text-primary-text
-           hover:border-primary-text"
+           hover:border-primary-text text-primary-text font-semibold"
           >
             View Details
           </button>
