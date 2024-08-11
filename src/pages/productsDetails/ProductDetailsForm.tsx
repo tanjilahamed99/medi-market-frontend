@@ -1,8 +1,16 @@
-import MedicineCard from "@/components/shared/MedicineCard";
-import SectionTitle from "@/components/shared/SectionTitle";
+"use client";
 
-const FeaturedProducts = () => {
-  const data = [
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { IoStar, IoStarOutline } from "react-icons/io5";
+import { MdOutlineAttachMoney } from "react-icons/md";
+import Rating from "react-rating";
+
+const ProductDetailsForm = ({ id }: any) => {
+  const [data, setData] = useState({});
+
+  console.log(data);
+  const datas = [
     {
       name: "Aspirin",
       description: "Used to reduce pain, fever, or inflammation.",
@@ -123,18 +131,80 @@ const FeaturedProducts = () => {
     },
   ];
 
-  return (
-    <div className="my-20 px-2 lg:px-4 xl:px-0">
-      <SectionTitle title="Featured Products" />
+  useEffect(() => {
+    const find = datas.find((item) => item._id === id);
+    setData({ ...find });
+  }, [id]);
 
-      {/* content */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 items-center gap-6 mt-4">
-        {data?.map((i, idx) => (
-          <MedicineCard key={idx} data={i} />
-        ))}
+  return (
+    <div className="flex items-start my-10 gap-5">
+      {/* left site */}
+      <div className="border shadow w-[500px] relative">
+        <Image
+          src={data.image}
+          alt="image"
+          className="mx-auto p-10"
+          height={500}
+          width={500}
+        />
+        <div className="absolute top-2 left-3 flex gap-1">
+          {data.popular ? (
+            <h3 className="bg-yellow-600 rounded-full text-[10px] text-white w-fit px-2 py-0.5">
+              POPULAR
+            </h3>
+          ) : null}
+
+          {data.discount ? (
+            <h3 className="bg-blue-500 rounded-full text-[10px] text-white w-fit px-2 py-0.5">
+              SALE
+            </h3>
+          ) : null}
+        </div>
+      </div>
+      {/* right site */}
+      <div className="w-1/2">
+        {" "}
+        <div className="space-y-3 mt-4">
+          <div className="space-y-1">
+            <h2 className="text-primary-text font-medium">{data?.name}</h2>
+            <p className="flex items-center font-extrabold text-primary-text">
+              <MdOutlineAttachMoney className="text-xl" />
+              {data?.price}
+            </p>
+            {/* ratings */}
+            <div className="flex items-center gap-3">
+              <Rating
+                initialRating={data?.ratings ? data?.ratings : 2}
+                emptySymbol={
+                  <IoStarOutline className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
+                }
+                placeholderSymbol={
+                  <IoStarOutline className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
+                }
+                fullSymbol={
+                  <IoStar className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
+                }
+              />
+
+              <h3 className="text-primary-text font-semibold">
+                ( {data?.review?.length} customer review)
+              </h3>
+            </div>
+
+            {/* <p>{data?.description}</p> */}
+            <p>
+              Morbi aliquam odio erat, eu varius sapien rhoncus sit amet. In
+              blandit nunc non nibh cursus, a bibendum ipsum condimentum.
+              Aliquam euismod vehicula neque. Sed sit amet dolor pulvinar,
+              aliquet sapien a, auctor turpis. Praesent aliquam vel sem sit amet
+              ullamcorper. In sed justo neque. Nam semper erat nec volutpat
+              pellentesque.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default FeaturedProducts;
+export default ProductDetailsForm;

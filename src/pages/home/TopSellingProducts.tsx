@@ -112,7 +112,7 @@ const TopSellingProducts = () => {
     },
   ];
   return (
-    <div className="my-20">
+    <div className="my-20 px-2 lg:px-4 xl:px-0">
       <SectionTitle title="TOP SELLING PRODUCTS" />
 
       {/* content */}
