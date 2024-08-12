@@ -72,3 +72,5 @@ const MedicineCard = ({ data }: any) => {
 };
 
 export default MedicineCard;
+
+

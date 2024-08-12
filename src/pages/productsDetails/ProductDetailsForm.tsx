@@ -6,11 +6,29 @@ import { IoStar, IoStarOutline } from "react-icons/io5";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Rating from "react-rating";
 
-const ProductDetailsForm = ({ id }: any) => {
-  const [data, setData] = useState({});
+// Define the type for the product data
+type ProductData = {
+  name: string;
+  description: string;
+  image: string;
+  discount: string;
+  review: string[];
+  quantity: string;
+  ratings: string; // should be number instead of string
+  company: string;
+  type: string;
+  price: string;
+  popular: boolean;
+};
 
-  console.log(data);
-  const datas = [
+interface ProductDetailsFormProps {
+  id: string;
+}
+
+const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
+  const [data, setData] = useState<ProductData | null>(null);
+
+  const datas: ProductData[] = [
     {
       name: "Aspirin",
       description: "Used to reduce pain, fever, or inflammation.",
@@ -23,7 +41,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Painkiller",
       price: "10.99",
       popular: true,
-      _id: "4565465466546",
+    
     },
     {
       name: "Amoxicillin",
@@ -37,7 +55,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Antibiotic",
       price: "15.49",
       popular: false,
-      _id: "6546456456",
+    
     },
     {
       name: "Cetirizine",
@@ -51,7 +69,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Antihistamine",
       price: "8.99",
       popular: true,
-      _id: "6546456456456",
+    
     },
     {
       name: "Ibuprofen",
@@ -66,7 +84,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Painkiller",
       price: "9.99",
       popular: true,
-      _id: "6546456456456",
+    
     },
     {
       name: "Bisolvon",
@@ -84,7 +102,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Antidiabetic",
       price: "12.79",
       popular: true,
-      _id: "65645645645645654",
+    
     },
     {
       name: "Omeprazole",
@@ -99,7 +117,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Antacid",
       price: "11.29",
       popular: false,
-      _id: "6546456546456",
+    
     },
     {
       name: "Lisinopril",
@@ -114,7 +132,7 @@ const ProductDetailsForm = ({ id }: any) => {
       type: "Antihypertensive",
       price: "14.49",
       popular: true,
-      _id: "6546546456546456",
+    
     },
     {
       name: "Paracetamol",
@@ -127,18 +145,25 @@ const ProductDetailsForm = ({ id }: any) => {
       company: "HealthCorp",
       type: "Painkiller",
       price: "6.99",
-      _id: "8936583456837",
+    
+      popular: true,
     },
   ];
 
   useEffect(() => {
-    const find = datas.find((item) => item._id === id);
-    setData({ ...find });
+    const find = datas.find((item) =>=== id);
+    if (find) {
+      setData(find);
+    }
   }, [id]);
+
+  if (!data) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="flex items-start my-10 gap-5">
-      {/* left site */}
+      {/* Left side */}
       <div className="border shadow w-[500px] relative">
         <Image
           src={data.image}
@@ -148,59 +173,50 @@ const ProductDetailsForm = ({ id }: any) => {
           width={500}
         />
         <div className="absolute top-2 left-3 flex gap-1">
-          {data.popular ? (
+          {data.popular && (
             <h3 className="bg-yellow-600 rounded-full text-[10px] text-white w-fit px-2 py-0.5">
               POPULAR
             </h3>
-          ) : null}
+          )}
 
-          {data.discount ? (
+          {data.discount && (
             <h3 className="bg-blue-500 rounded-full text-[10px] text-white w-fit px-2 py-0.5">
               SALE
             </h3>
-          ) : null}
+          )}
         </div>
       </div>
-      {/* right site */}
-      <div className="w-1/2">
-        {" "}
-        <div className="space-y-3 mt-4">
-          <div className="space-y-1">
-            <h2 className="text-primary-text font-medium">{data?.name}</h2>
-            <p className="flex items-center font-extrabold text-primary-text">
-              <MdOutlineAttachMoney className="text-xl" />
-              {data?.price}
-            </p>
-            {/* ratings */}
-            <div className="flex items-center gap-3">
-              <Rating
-                initialRating={data?.ratings ? data?.ratings : 2}
-                emptySymbol={
-                  <IoStarOutline className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
-                }
-                placeholderSymbol={
-                  <IoStarOutline className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
-                }
-                fullSymbol={
-                  <IoStar className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
-                }
-              />
-
-              <h3 className="text-primary-text font-semibold">
-                ( {data?.review?.length} customer review)
-              </h3>
-            </div>
-
-            {/* <p>{data?.description}</p> */}
-            <p>
-              Morbi aliquam odio erat, eu varius sapien rhoncus sit amet. In
-              blandit nunc non nibh cursus, a bibendum ipsum condimentum.
-              Aliquam euismod vehicula neque. Sed sit amet dolor pulvinar,
-              aliquet sapien a, auctor turpis. Praesent aliquam vel sem sit amet
-              ullamcorper. In sed justo neque. Nam semper erat nec volutpat
-              pellentesque.
-            </p>
+      {/* Right side */}
+      <div className="w-1/2 space-y-3 mt-4">
+        <div className="space-y-1">
+          <h2 className="text-primary-text font-medium">{data.name}</h2>
+          <p className="flex items-center font-extrabold text-primary-text">
+            <MdOutlineAttachMoney className="text-xl" />
+            {data.price}
+          </p>
+          {/* Ratings */}
+          <div className="flex items-center gap-3">
+            <Rating
+              initialRating={data.ratings || 2}
+              emptySymbol={
+                <IoStarOutline className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
+              }
+              fullSymbol={
+                <IoStar className="text-xl h-[24px] w-[25px] text-[#F9BF2D]" />
+              }
+            />
+            <h3 className="text-primary-text font-semibold">
+              ({data.review.length} customer reviews)
+            </h3>
           </div>
+          {/* <p>{data.description}</p> */}
+          <p>
+            Morbi aliquam odio erat, eu varius sapien rhoncus sit amet. In
+            blandit nunc non nibh cursus, a bibendum ipsum condimentum. Aliquam
+            euismod vehicula neque. Sed sit amet dolor pulvinar, aliquet sapien
+            a, auctor turpis. Praesent aliquam vel sem sit amet ullamcorper. In
+            sed justo neque. Nam semper erat nec volutpat pellentesque.
+          </p>
         </div>
       </div>
     </div>
