@@ -10,16 +10,12 @@ const fetchData = createApi({
     getAllProducts: builder.query({
       query: () => `/product/multiple`,
     }),
-    // postVenue: builder.mutation({
-    //   query: ({ url, body }) => ({
-    //     url,
-    //     method: "POST",
-    //     body,
-    //   }),
-    // }),
+    getSingleProducts: builder.query({
+      query: (id) => `/product/single/${id}`,
+    }),
   }),
 });
 
-export const {useGetAllProductsQuery} = fetchData;
+export const { useGetAllProductsQuery, useGetSingleProductsQuery } = fetchData;
 
 export default fetchData;
