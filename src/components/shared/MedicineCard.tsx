@@ -11,13 +11,17 @@ const MedicineCard = ({ data }: any) => {
     <div>
       <div className=" p-4 shadow rounded-md relative border">
         {/* image */}
-        <Image
-          className="w-[200px] h-[150px] mx-auto"
-          src={data?.image}
-          alt="card img"
-          height={500}
-          width={500}
-        />
+
+        {data?.images && (
+          <Image
+            className="w-[200px] h-[150px] mx-auto"
+            src={data?.images[0] || ""}
+            alt="card img"
+            height={500}
+            width={500}
+          />
+        )}
+
         <div className="space-y-3 mt-4">
           <div className="space-y-1">
             <h2 className="text-primary-text font-medium">{data?.name}</h2>
@@ -72,5 +76,3 @@ const MedicineCard = ({ data }: any) => {
 };
 
 export default MedicineCard;
-
-

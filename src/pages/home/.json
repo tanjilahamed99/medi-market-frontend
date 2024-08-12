@@ -1,0 +1,364 @@
+[
+  {
+    "name": "Aspirin",
+    "description": "Aspirin is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Used to reduce pain, fever, or inflammation.",
+    "images": [
+      "https://i.ibb.co/VWSy6jJ/img1.png",
+      "https://i.ibb.co/pRhd0c6/pngwing-com-26.png",
+      "https://i.ibb.co/L0gvZVK/pngwing-com-43.png"
+    ],
+    "discount": "10%",
+    "review": [
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly."
+    ],
+    "quantity": "50",
+    "ratings": "4.5",
+    "company": "PharmaCo",
+    "type": "Painkiller",
+    "price": "10.99",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  },
+  {
+    "name": "Amoxicillin",
+    "description": "Amoxicillin is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Antibiotic used to treat bacterial infections.",
+    "images": [
+      "https://i.ibb.co/MPh6Qwh/pngwing-com-24.png",
+      "https://i.ibb.co/jTS8JXz/pngwing-com-41.png",
+      "https://i.ibb.co/cwV5jMM/pngwing-com-44.png"
+    ],
+    "discount": "5%",
+    "review": [
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly."
+    ],
+    "quantity": "30",
+    "ratings": "4.7",
+    "company": "MediLife",
+    "type": "Antibiotic",
+    "price": "15.49",
+    "popular": false,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+
+  {
+    "name": "Cetirizine",
+    "description": "Cetirizine is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Used to relieve allergy symptoms.",
+    "images": [
+      "https://i.ibb.co/y0FwWvh/pngwing-com-25.png",
+      "https://i.ibb.co/MCNHKTs/pngwing-com-37.png",
+      "https://i.ibb.co/K012gvC/pngwing-com-36.png"
+    ],
+    "discount": "15%",
+    "review": [
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly.",
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly."
+    ],
+    "quantity": "100",
+    "ratings": "2",
+    "company": "AllerGen",
+    "type": "Antihistamine",
+    "price": "8.99",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+  {
+    "name": "Ibuprofen",
+    "description": "Ibuprofen is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Nonsteroidal anti-inflammatory drug (NSAID) used for pain relief and f…",
+    "images": [
+      "https://i.ibb.co/7gddN5F/pngwing-com-26.png",
+      "https://i.ibb.co/fdVZ50h/pngwing-com-42.png",
+      "https://i.ibb.co/XbJSjj7/pngwing-com-38.png"
+    ],
+    "discount": "",
+
+    "review": [
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly."
+    ],
+    "quantity": "100",
+    "ratings": "4.6",
+    "company": "PainRelief Co.",
+    "type": "Painkiller",
+    "price": "9.99",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  },
+  {
+    "name": "Bisolvon",
+    "description": "Bisolvon is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Medication used to treat type 2 diabetes by controlling blood sugar le…",
+    "images": [
+      "https://i.ibb.co/Bjyryb1/pngwing-com-30.png",
+      "https://i.ibb.co/LvjQ26f/pngwing-com-40.png",
+      "https://i.ibb.co/MDmSvvw/pngwing-com-39.png"
+    ],
+    "discount": "8%",
+
+    "review": [],
+    "quantity": "60",
+    "ratings": "4.4",
+    "company": "GlucoseCare",
+    "type": "Antidiabetic",
+    "price": "12.79",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Tertiary"
+  },
+
+  {
+    "name": "Omeprazole",
+    "description": "Omeprazole is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Proton pump inhibitor used to treat acid reflux and ulcers.",
+    "images": [
+      "https://i.ibb.co/bLGDnr4/pngwing-com-27.png",
+      "https://i.ibb.co/L0gvZVK/pngwing-com-43.png",
+      "https://i.ibb.co/MCNHKTs/pngwing-com-37.png"
+    ],
+    "discount": "10%",
+    "review": [
+      "Effective for acid reflux management.",
+      "Heals stomach ulcers quickly.",
+      "Effective for acid reflux management."
+    ],
+    "quantity": "40",
+    "ratings": "4.3",
+    "company": "StomachCare",
+    "type": "Antacid",
+    "price": "11.29",
+    "popular": false,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  },
+  {
+    "name": "Lisinopril",
+    "description": "Lisinopril is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.ACE inhibitor used to treat high blood pressure and heart failure.",
+    "images": [
+      "https://i.ibb.co/r7Ptchz/pngwing-com-28.png",
+      "https://i.ibb.co/wzTxSkr/pngwing-com-47.png",
+      "https://i.ibb.co/jTS8JXz/pngwing-com-41.png"
+    ],
+    "discount": "",
+
+    "review": ["Effective for acid reflux management."],
+    "quantity": "90",
+    "ratings": "4.5",
+    "company": "HeartHealth",
+    "type": "Antihypertensive",
+    "price": "14.49",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+  {
+    "name": "Paracetamol",
+    "description": "Paracetamol is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Commonly used to treat pain and reduce fever.",
+    "images": [
+      "https://i.ibb.co/r7bJDxY/pngwing-com-29.png",
+      "https://i.ibb.co/C0hqQX0/pngwing-com-46.png",
+      "https://i.ibb.co/DrJv1Kd/pngwing-com-45.png"
+    ],
+    "discount": "10%",
+    "review": [
+      "Helps manage blood sugar levels effectively.",
+      "Minimal side effects."
+    ],
+    "quantity": "50",
+    "ratings": "3",
+    "company": "HealthCorp",
+    "type": "Painkiller",
+    "price": "6.99",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Tertiary"
+  },
+  {
+    "name": "Paracetamol",
+    "description": "Paracetamol is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Used to treat pain and reduce fever.",
+    "images": [
+      "https://i.ibb.co/q1fD6GC/pngwing-com-25.png",
+      "https://i.ibb.co/C0hqQX0/pngwing-com-46.png",
+      "https://i.ibb.co/DrJv1Kd/pngwing-com-45.png"
+    ],
+    "discount": "5%",
+    "review": ["Effective for pain relief.", "Works quickly to reduce fever."],
+    "quantity": "500mg, 10 tablets",
+    "ratings": "4.9",
+    "company": "Square Pharmaceuticals",
+    "type": "Painkiller",
+    "price": "1.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  },
+  {
+    "name": "Omeprazole",
+    "description": "Omeprazole is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Used to treat acid reflux, ulcers, and other stomach issues.",
+    "images": [
+      "https://i.ibb.co/v41p6C9/pngwing-com-24.png",
+      "https://i.ibb.co/wzTxSkr/pngwing-com-47.png",
+      "https://i.ibb.co/jTS8JXz/pngwing-com-41.png"
+    ],
+    "discount": "10%",
+    "review": ["Great for reducing acidity.", "Provides quick relief."],
+    "quantity": "20mg, 10 capsules",
+    "ratings": "4.6",
+    "company": "Beximco Pharmaceuticals",
+    "type": "Antacid",
+    "price": "7.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+  {
+    "name": "Napa",
+    "description": "Napa is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Paracetamol used to treat pain and reduce fever.",
+    "images": [
+      "https://i.ibb.co/r7Ptchz/pngwing-com-28.png",
+      "https://i.ibb.co/L0gvZVK/pngwing-com-43.png",
+      "https://i.ibb.co/MCNHKTs/pngwing-com-37.png"
+    ],
+    "discount": "5%",
+    "review": ["Effective for fever and pain.", "Safe for regular use."],
+    "quantity": "500mg, 10 tablets",
+    "ratings": "4.9",
+    "company": "Beximco Pharmaceuticals",
+    "type": "Painkiller",
+    "price": "1.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Tertiary"
+  },
+  {
+    "name": "Plant B",
+    "description": "Plant B is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Omeprazole used to treat acid reflux and stomach ulcers.",
+    "images": [
+      "https://i.ibb.co/DgWsK7m/pngwing-com-27.png",
+      "https://i.ibb.co/LvjQ26f/pngwing-com-40.png",
+      "https://i.ibb.co/MDmSvvw/pngwing-com-39.png"
+    ],
+    "discount": "7%",
+    "review": ["Great for acid relief.", "Quickly alleviates discomfort."],
+    "quantity": "20mg, 10 capsules",
+    "ratings": "4.7",
+    "company": "Square Pharmaceuticals",
+    "type": "Antacid",
+    "price": "7.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  },
+  {
+    "name": "Fexo",
+    "description": "Fexo is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Fexofenadine used to treat allergy symptoms.",
+    "images": [
+      "https://i.ibb.co/vP2J4Z6/pngwing-com-31.png",
+      "https://i.ibb.co/fdVZ50h/pngwing-com-42.png",
+      "https://i.ibb.co/XbJSjj7/pngwing-com-38.png"
+    ],
+    "discount": "6%",
+    "review": ["Effective for allergies.", "No drowsiness."],
+    "quantity": "120mg, 10 tablets",
+    "ratings": "4.6",
+    "company": "Incepta Pharmaceuticals",
+    "type": "Antihistamine",
+    "price": "6.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Tertiary"
+  },
+  {
+    "name": "Losectil",
+    "description": "Losectil is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Omeprazole used to reduce stomach acid and treat ulcers.",
+    "images": [
+      "https://i.ibb.co/pZvwJ0y/pngwing-com-32.png",
+      "https://i.ibb.co/MCNHKTs/pngwing-com-37.png",
+      "https://i.ibb.co/K012gvC/pngwing-com-36.png"
+    ],
+    "discount": "8%",
+    "review": ["Works well for acidity.", "Good for long-term use."],
+    "quantity": "20mg, 10 capsules",
+    "ratings": "4.7",
+    "company": "Eskayef Pharmaceuticals",
+    "type": "Antacid",
+    "price": "6.50",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+  {
+    "name": "Histacin",
+    "description": "Histacin is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Chlorpheniramine maleate used to treat allergic conditions.",
+    "images": [
+      "https://i.ibb.co/2F6vxCd/pngwing-com-29.png",
+      "https://i.ibb.co/MCNHKTs/pngwing-com-37.png",
+      "https://i.ibb.co/K012gvC/pngwing-com-36.png"
+    ],
+    "discount": "5%",
+    "review": ["Good for colds and allergies.", "Works quickly."],
+    "quantity": "4mg, 10 tablets",
+    "ratings": "4.5",
+    "company": "Square Pharmaceuticals",
+    "type": "Antihistamine",
+    "price": "2.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Secondary"
+  },
+  {
+    "name": "Napa Extend",
+    "description": "Napa Extend is a medication used to treat type 2 diabetes by controlling blood sugar levels. It works by helping the body regulate the amount of sugar in the blood, which is essential for people with diabetes. Maintaining proper blood sugar levels can prevent complications such as nerve damage, kidney damage, blindness, and cardiovascular disease. Bisolvon is usually taken once or twice a day with meals, and it is important to follow the dosing instructions provided by your healthcare provider. Side effects may include hypoglycemia (low blood sugar), which can cause symptoms like shakiness, sweating, and dizziness. Regular monitoring of blood sugar levels is recommended while taking this medication. Bisolvon is often part of a comprehensive treatment plan that includes diet, exercise, and possibly other medications to effectively manage diabetes.Extended-release Paracetamol for long-lasting pain relief.",
+    "images": [
+      "https://i.ibb.co/87W2mbJ/pngwing-com-33.png",
+      "https://i.ibb.co/jTS8JXz/pngwing-com-41.png",
+      "https://i.ibb.co/cwV5jMM/pngwing-com-44.png"
+    ],
+    "discount": "6%",
+    "review": ["Lasts longer than regular Napa.", "Great for chronic pain."],
+    "quantity": "665mg, 10 tablets",
+    "ratings": "4.8",
+    "company": "Beximco Pharmaceuticals",
+    "type": "Painkiller",
+    "price": "3.00",
+    "popular": true,
+    "metaKey": "",
+    "stack": true,
+    "status": true,
+    "category": "Primary"
+  }
+]

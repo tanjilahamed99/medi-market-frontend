@@ -1,5 +1,6 @@
 "use client";
 
+import RelatedProducts from "@/components/shared/RelatedProducts";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { useGetSingleProductsQuery } from "@/redux/rtk/fetchData";
 import Image from "next/image";
@@ -43,16 +44,34 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
 
   return (
     <div>
-      <div className="flex items-start my-10 gap-5">
+      <div className="flex flex-col lg:flex-row items-start my-10 gap-5">
         {/* Left side */}
-        <div className="border shadow w-[500px] relative">
-          <Image
-            src={data?.product?.image}
-            alt="image"
-            className="mx-auto p-10"
-            height={500}
-            width={500}
-          />
+        <div className="border shadow lg:w-[500px] relative mx-auto">
+          <div className="">
+            <Image
+              src={data?.product?.images[0]}
+              alt="image"
+              className=" col-span-2 h-[200px] md:h-[250px] lg:border-b p-5 lg:border-primary-text"
+              height={500}
+              width={500}
+            />
+            <div className="lg:flex items-center md:p-4 justify-center gap-20 hidden">
+              <Image
+                src={data?.product?.images[1]}
+                alt="image"
+                className=" h-[130px] w-[140px]"
+                height={500}
+                width={500}
+              />
+              <Image
+                src={data?.product?.images[2]}
+                alt="image"
+                className=" h-[130px] w-[140px] "
+                height={500}
+                width={500}
+              />
+            </div>
+          </div>
           <div className="absolute top-2 left-3 flex gap-1">
             {data?.product?.popular && (
               <h3 className="bg-yellow-600 rounded-full text-[10px] text-white w-fit px-2 py-0.5">
@@ -68,7 +87,7 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
           </div>
         </div>
         {/* Right side */}
-        <div className="w-1/2 space-y-5 mt-4">
+        <div className="lg:w-1/2 space-y-5 mt-4 pl-2 md:pl-5 lg:pl-0">
           <div className="space-y-1">
             <h2 className="text-primary-text font-medium">
               {data?.product?.name}
@@ -93,14 +112,7 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
               </h3>
             </div>
             {/* <p>{data.description}</p> */}
-            <p>
-              Morbi aliquam odio erat, eu varius sapien rhoncus sit amet. In
-              blandit nunc non nibh cursus, a bibendum ipsum condimentum.
-              Aliquam euismod vehicula neque. Sed sit amet dolor pulvinar,
-              aliquet sapien a, auctor turpis. Praesent aliquam vel sem sit amet
-              ullamcorper. In sed justo neque. Nam semper erat nec volutpat
-              pellentesque.
-            </p>
+            <p>{data?.product?.description.slice(0, 400)}</p>
           </div>
 
           <div className="flex  items-center gap-4">
@@ -146,25 +158,14 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
         </div>
       </div>
 
-      <div>
+      <div className="pl-2 md:pl-5 lg:pl-2 xl:px">
         <h2 className="text-primary-text font-semibold text-2xl ">
           Description
         </h2>
 
-        <p className="mt-2 text-primary-text">
-          Morbi aliquam odio erat, eu varius sapien rhoncus sit amet. In blandit
-          nunc non nibh cursus, a bibendum ipsum condimentum. Aliquam euismod
-          vehicula neque. Sed sit amet dolor pulvinar, aliquet sapien a, auctor
-          turpis. Praesent aliquam vel sem sit amet ullamcorper. In sed justo
-          neque. Nam semper erat nec volutpat pellentesque. Morbi aliquam odio
-          erat, eu varius sapien rhoncus sit amet. In blandit nunc non nibh
-          cursus, a bibendum ipsum condimentum. Aliquam euismod vehicula neque.
-          Sed sit amet dolor pulvinar, aliquet sapien a, auctor turpis. Praesent
-          aliquam vel sem sit amet ullamcorper. In sed justo neque. Nam semper
-          erat nec volutpat pellentesque.
-        </p>
+        <p className="mt-2 text-primary-text">{data?.product?.description}</p>
 
-        <div className="grid grid-cols-2 items-center w-1/2 gap-2 mt-5 text-primary-text">
+        <div className="grid md:grid-cols-2 items-center lg:w-2/3 xl:w-1/2 gap-2 mt-5 text-primary-text">
           <li>Fast-Acting Relief</li>
           <li>Long-Lasting Effect</li>
           <li>Doctor-Recommended Formula</li>
@@ -177,8 +178,10 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
         </div>
       </div>
 
-      <div className="mt-16">
-        <SectionTitle title="Related Products" />
+      <div className="mt-16 px-2 xl:px-0">
+        <RelatedProducts
+          category={data?.product?.category}
+        />
       </div>
     </div>
   );
