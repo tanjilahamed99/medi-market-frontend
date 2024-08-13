@@ -7,14 +7,8 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import AuthModal from "./AuthModal";
-import { useSession } from "next-auth/react";
 
 const Navbar = () => {
-  const {data} = useSession()
-  console.log(data)
-
-
-
 
   const handleClick = () => {
     window.location.href = "mailto:tanjil.ahamed0199@gmail.com";
