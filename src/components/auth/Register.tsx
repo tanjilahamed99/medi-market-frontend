@@ -1,13 +1,26 @@
 "use client";
-import { redirect } from "next/dist/server/api-utils";
-import { useState } from "react";
-import RememberMe from "../auth/RememberMe";
-import AuthInput from "../auth/AuthInput";
-import ConfirmOTP from "../auth/ConfirmOTP";
-import SignUpWithPassword from "../auth/SignUpWithPassword";
+import axios from "axios";
+import React, { useState } from "react";
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
+import { BASE_URL } from "@/constant/constant";
+import Input from "@/components/shared/inputs/Input";
+import Image from "next/image";
+import YellowBtn from "@/components/shared/buttons/YellowBtn";
+import { ImSpinner10 } from "react-icons/im";
+import SubmitBtn from "@/components/shared/buttons/SubmitBtn";
+import ErrorMessage from "../shared/error/ErrorMessage";
 import Link from "next/link";
+import AuthInput from "./AuthInput";
+import AuthHeader from "./AuthHeader";
+import RememberMe from "./RememberMe";
+import Socials from "./Socials";
+import toast from "react-hot-toast";
+import ConfirmOTP from "./ConfirmOTP";
+import SignUpWithPassword from "./SignUpWithPassword";
+import AuthContainer from "../containers/AuthContainer";
 
-const Register = () => {
+const Register = ({ role }) => {
   const [loading, setLoading] = useState(false);
   const [sendingOTP, setSendingOTP] = useState(false);
   const [confirmingOTP, setConfirmingOTP] = useState(false);
@@ -15,9 +28,20 @@ const Register = () => {
   const [showOTPScreen, setShowOTPScreen] = useState(false);
   const [showPasswordScreen, setShowPasswordScreen] = useState(false);
   const [error, setError] = useState({ status: false, message: "" });
+
   const showInitialScreen = !showOTPScreen && !showPasswordScreen;
 
-  const handleChange = (e: any) => {
+  const session = useSession();
+
+  // console.log(session);
+
+  // if (session.status === "authenticated") {
+  //   redirect("/");
+  // }
+
+  console.log(error);
+
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
       ...prev,
@@ -25,7 +49,7 @@ const Register = () => {
     }));
   };
 
-  const handleSendOTP = async (e: any) => {
+  const handleSendOTP = async (e) => {
     e?.preventDefault();
 
     if (sendingOTP) return;
@@ -50,8 +74,6 @@ const Register = () => {
         provider: "email/pass",
       });
 
-      console.log(data);
-
       if (data?.success) {
         setShowOTPScreen(true);
         toast.success("OTP is sent!");
@@ -63,14 +85,14 @@ const Register = () => {
     } catch (error) {
       setError({
         status: true,
-        message: error?.response?.data?.message,
-        type: error?.response?.data?.type,
+        message: error.response.data.message,
+        type: error.response.data.type,
       });
       setSendingOTP(false);
     }
   };
 
-  const handleValidateOTP = async (e: any) => {
+  const handleValidateOTP = async (e) => {
     e.preventDefault();
     if (confirmingOTP) return;
 
@@ -104,9 +126,11 @@ const Register = () => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (loading) return;
+
     setLoading(true);
     setError({ status: false, message: "" });
 
@@ -129,15 +153,19 @@ const Register = () => {
         name,
         password: password1,
         email,
-        role: "vendor",
+        role,
         provider: "email/pass",
       });
 
       const response = await signIn("credentials", {
         email,
         password: password1,
-        role: "vendor",
+        role,
       });
+
+      if (!response?.error) {
+        redirect("/");
+      }
 
       //   if (!response?.ok) {
       //     throw new Error("Network response was not ok!");
@@ -155,12 +183,19 @@ const Register = () => {
     }
   };
 
+  const handleGoogle = async () => {
+    try {
+      signIn("google");
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
   return (
-    <div className="md:w-[40%] lg:w-1/2 mx-auto  hidden md:inline">
-      <section className="grid grid-cols-1 lg:grid-cols-3 h-full gap-x-8  items-center w-full">
-        <section className="relative  col-span-1 w-full h-full hidden lg:block"></section>
+    <AuthContainer>
+      <section className="grid grid-cols-1 md:grid-cols-3 h-full gap-x-8  items-center">
+        <section className="relative  col-span-1 w-full h-full hidden md:block"></section>
         {/* Sign Up Form  */}
-        <section className="md:col-span-2 flex  flex-col gap-6">
+        <section className="md:col-span-2 flex flex-col gap-y-6 md:w-[85%] lg:w-4/5">
           {showInitialScreen && (
             <SendOTP
               sendingOTP={sendingOTP}
@@ -188,15 +223,17 @@ const Register = () => {
               error={error}
             />
           )}
+          {role === "user" && <Socials />}
         </section>
       </section>
-    </div>
+    </AuthContainer>
   );
 };
 
-function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
+function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }) {
   return (
     <section className="flex  flex-col gap-6">
+      <AuthHeader content="Sign up using" />
       <form onSubmit={handleSendOTP} className="flex  flex-col gap-y-4">
         <div className="flex  flex-col gap-y-4">
           <AuthInput
@@ -219,7 +256,7 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
             />
             {error?.status && error?.type === "registered" && (
               <div className="flex  items-center gap-x-1">
-                {/* <ErrorMessage>{error.message}</ErrorMessage> */}
+                <ErrorMessage>{error.message}</ErrorMessage>
                 <Link
                   className="underline text-black text-xs font-semibold"
                   href="/signin"
@@ -231,14 +268,96 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
           </div>
         </div>
         <RememberMe />
-        {/* <SubmitBtn
+        <SubmitBtn
           loading={sendingOTP}
           loadingTxt="Sending"
           notLoadingTxt="Send OTP"
-        /> */}
+        />
       </form>
     </section>
   );
 }
 
 export default Register;
+
+{
+  /* <section className="w-[90%] mx-auto sm:w-[80%]  md:w-[70%] lg:w-[65%]">
+        <form
+          action=""
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-y-4 "
+        >
+          <Input
+            name="name"
+            required
+            placeholder="Name"
+            className="w-2/3 px-2 py-2 border"
+            onChange={handleChange}
+          />
+          <Input
+            type="email"
+            name="email"
+            required
+            placeholder="Email"
+            className="w-2/3 px-2 py-2 border"
+            onChange={handleChange}
+          />
+
+          {showOTPScreen && (
+            <Input
+              type="number"
+              name="otp"
+              required
+              min={8}
+              placeholder="OTP"
+              className="w-2/3 px-2 py-2 border"
+              onChange={handleChange}
+            />
+          )}
+
+          {showPasswordScreen && (
+            <Input
+              type="password"
+              name="password"
+              required
+              min={8}
+              placeholder="Password"
+              className="w-2/3 px-2 py-2 border"
+              onChange={handleChange}
+            />
+          )}
+
+          <button
+            type={
+              (!showOTPScreen && !showPasswordScreen) || showOTPScreen
+                ? "button"
+                : "submit"
+            }
+            onClick={
+              !showOTPScreen && !showPasswordScreen
+                ? handleSendOTP
+                : showOTPScreen
+                ? handleValidateOTP
+                : ""
+            }
+            className="px-2 py-2 text-white bg-black w-fit"
+          >
+            {showOTPScreen && "Confirm OTP"}
+            {showPasswordScreen && "Submit"}
+            {!showOTPScreen && !showPasswordScreen && "Send OTP"}
+          </button>
+        </form>
+        <button
+          onClick={handleGoogle}
+          className="px-2 py-2 text-black border border-black bg-white w-fit"
+        >
+          Google
+        </button>
+        <button
+          onClick={() => signIn("facebook")}
+          className="px-2 py-2 text-black border border-black bg-white w-fit"
+        >
+          Facebook
+        </button>
+      </section>  */
+}
