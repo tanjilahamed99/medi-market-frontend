@@ -1,9 +1,11 @@
 // import Input from "../shared/inputs/Input";
 
+import { Input } from "postcss";
+
 function RememberMe() {
   return (
     <div className="flex items-center gap-2  cursor-pointer">
-      {/* <Input type="checkbox" id="remember" className="border " /> */}
+      <Input type="checkbox" id="remember" className="border " />
       <label htmlFor="remember" className=" cursor-pointer">
         Remember me
       </label>

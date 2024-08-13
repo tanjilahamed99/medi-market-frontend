@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { BASE_URL } from "@/constant/constant";
-import Input from "@/components/shared/inputs/Input";
+import Input from "@/components/shared/Input";
 import Image from "next/image";
 import YellowBtn from "@/components/shared/buttons/YellowBtn";
 import { ImSpinner10 } from "react-icons/im";

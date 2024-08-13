@@ -1,11 +1,15 @@
 "use client";
 import { redirect } from "next/dist/server/api-utils";
 import { useState } from "react";
-import RememberMe from "../auth/RememberMe";
 import AuthInput from "../auth/AuthInput";
 import ConfirmOTP from "../auth/ConfirmOTP";
 import SignUpWithPassword from "../auth/SignUpWithPassword";
 import Link from "next/link";
+import SubmitBtn from "./buttons/SubmitBtn";
+import ErrorMessage from "./ErrorMessage";
+import { BASE_URL } from "@/utils/url";
+import axios from "axios";
+import { signIn } from "next-auth/react";
 
 const Register = () => {
   const [loading, setLoading] = useState(false);
@@ -27,12 +31,10 @@ const Register = () => {
 
   const handleSendOTP = async (e: any) => {
     e?.preventDefault();
-
     if (sendingOTP) return;
-
     setError({ status: false, message: "" });
     setSendingOTP(true);
-    const { name, email } = userData || {};
+    const { name, email }: any = userData || {};
 
     if (!name || !email) {
       setError({ status: true, message: "Name or Email is required" });
@@ -54,7 +56,7 @@ const Register = () => {
 
       if (data?.success) {
         setShowOTPScreen(true);
-        toast.success("OTP is sent!");
+        // toast.success("OTP is sent!");
         return setSendingOTP(false);
       }
 
@@ -63,8 +65,8 @@ const Register = () => {
     } catch (error) {
       setError({
         status: true,
-        message: error?.response?.data?.message,
-        type: error?.response?.data?.type,
+        // message: error?.response?.data?.message,
+        // type: error?.response?.data?.type,
       });
       setSendingOTP(false);
     }
@@ -77,8 +79,7 @@ const Register = () => {
     setConfirmingOTP(true);
     setError({ status: false, message: "" });
 
-    const { email, otp } = userData || {};
-    console.log(otp);
+    const { email, otp }: any = userData || {};
 
     if (!email || !otp) {
       return setError({ status: true, message: "Email and OTP required" });
@@ -91,15 +92,14 @@ const Register = () => {
         provider: "email/pass",
       });
 
-      if (data.success) {
+      if (data?.success) {
         setShowPasswordScreen(true);
         setShowOTPScreen(false);
       }
-
       setConfirmingOTP(false);
     } catch (error) {
       console.log(error?.message);
-      setError({ status: true, message: error.response.data.message });
+      setError({ status: true, message: error?.response?.data?.message });
       setConfirmingOTP(false);
     }
   };
@@ -110,10 +110,7 @@ const Register = () => {
     setLoading(true);
     setError({ status: false, message: "" });
 
-    // const name = e.target.name.value;
-    // const email = e.target.email.value;
-    // const password = e.target.password.value;
-    const { name, email, password1, password2 } = userData || {};
+    const { name, email, password1, password2 }: any = userData || {};
 
     if (password1 !== password2) {
       setLoading(false);
@@ -129,19 +126,18 @@ const Register = () => {
         name,
         password: password1,
         email,
-        role: "vendor",
+        role: "user",
         provider: "email/pass",
       });
+      console.log(data);
 
       const response = await signIn("credentials", {
         email,
         password: password1,
-        role: "vendor",
+        role: "user",
       });
 
-      //   if (!response?.ok) {
-      //     throw new Error("Network response was not ok!");
-      //   }
+      console.log(response);
 
       setLoading(false);
     } catch (err) {
@@ -151,14 +147,12 @@ const Register = () => {
         setError({ status: true, message: err?.response?.data?.message });
       }
       console.log(err.message);
-      redirect("/signin");
     }
   };
 
   return (
-    <div className="md:w-[40%] lg:w-1/2 mx-auto  hidden md:inline">
-      <section className="grid grid-cols-1 lg:grid-cols-3 h-full gap-x-8  items-center w-full">
-        <section className="relative  col-span-1 w-full h-full hidden lg:block"></section>
+    <div className="">
+      <section className="">
         {/* Sign Up Form  */}
         <section className="md:col-span-2 flex  flex-col gap-6">
           {showInitialScreen && (
@@ -213,16 +207,16 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
               onChange={handleChange}
               name="email"
               id="email/otp"
-              label="Enter mobile no / Email ID"
-              placeholder="Enter mobile no / Email ID..."
+              label="Email ID"
+              placeholder="Email ID..."
               readOnly={sendingOTP}
             />
             {error?.status && error?.type === "registered" && (
               <div className="flex  items-center gap-x-1">
-                {/* <ErrorMessage>{error.message}</ErrorMessage> */}
+                <ErrorMessage>{error.message}</ErrorMessage>
                 <Link
                   className="underline text-black text-xs font-semibold"
-                  href="/signin"
+                  href="/"
                 >
                   Sign In
                 </Link>
@@ -230,12 +224,12 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
             )}
           </div>
         </div>
-        <RememberMe />
-        {/* <SubmitBtn
+
+        <SubmitBtn
           loading={sendingOTP}
           loadingTxt="Sending"
           notLoadingTxt="Send OTP"
-        /> */}
+        />
       </form>
     </section>
   );

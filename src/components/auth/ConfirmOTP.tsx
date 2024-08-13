@@ -1,4 +1,6 @@
-import Image from "next/image";
+
+import ErrorMessage from "../shared/ErrorMessage";
+import SubmitBtn from "../shared/buttons/SubmitBtn";
 import AuthInput from "./AuthInput";
 
 const ConfirmOTP = ({
@@ -12,7 +14,6 @@ const ConfirmOTP = ({
 }: any) => {
   return (
     <section className="flex  col-span-2  flex-col gap-6">
-      {/* <AuthHeader content="Mobile No/Email ID" /> */}
       <h4 className="text-sm">OTP is being sent to you on 9112545455</h4>
       <form
         onSubmit={(e) => {
@@ -31,9 +32,9 @@ const ConfirmOTP = ({
               placeholder="Enter OTP"
               readOnly={confirmingOTP}
             />
-            {/* {error?.status && (
-              // <ErrorMessage>Invalid OTP. Please try again</ErrorMessage>
-            )} */}
+            {error?.status && (
+              <ErrorMessage>Invalid OTP. Please try again</ErrorMessage>
+            )}
           </div>
           {!isForgot && (
             <p className="text-xs text-label">
@@ -50,23 +51,16 @@ const ConfirmOTP = ({
               !sendingOTP && handleSendOTP(e);
             }}
           >
-            <Image
-              src="/resend.svg"
-              className={`cursor-pointer ${sendingOTP ? "animate-spin" : ""}`}
-              height={22}
-              width={19}
-              alt="auth image"
-            />
             <h3 className="text-green cursor-pointer text-sm">
               {sendingOTP ? "Sending" : "Resend"}
             </h3>
           </div>
         </section>
-        {/* <SubmitBtn
+        <SubmitBtn
           loading={confirmingOTP}
           loadingTxt="Confirming"
           notLoadingTxt="Confirm OTP"
-        /> */}
+        />
       </form>
     </section>
   );

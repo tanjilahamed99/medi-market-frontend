@@ -1,6 +1,7 @@
+import SubmitBtn from "../shared/buttons/SubmitBtn";
+import ErrorMessage from "../shared/ErrorMessage";
 import AuthHeader from "./AuthHeader";
 import AuthInput from "./AuthInput";
-import RememberMe from "./RememberMe";
 
 function SignUpWithPassword({
   email,
@@ -12,7 +13,6 @@ function SignUpWithPassword({
 }: any) {
   return (
     <section className="flex  flex-col gap-6">
-      <AuthHeader content="Sign up" />
       <form onSubmit={handleSubmit} className="flex  flex-col gap-y-4">
         <div className="flex  flex-col gap-y-4">
           <AuthInput
@@ -35,18 +35,17 @@ function SignUpWithPassword({
               placeholder="Enter Password..."
               readOnly={loading}
             />
-            {/* {error?.status && error?.type === "not-matched-pass" && (
-              // <ErrorMessage>{error.message}</ErrorMessage>
-            )} */}
+            {error?.status && error?.type === "not-matched-pass" && (
+              <ErrorMessage>{error.message}</ErrorMessage>
+            )}
           </div>
         </div>
-        {!isForgot && <RememberMe />}
 
-        {/* <SubmitBtn
+        <SubmitBtn
           loading={loading}
           loadingTxt={isForgot ? "Changing password" : "Signing up"}
           notLoadingTxt={isForgot ? "Change password" : "Sign Up"}
-        /> */}
+        />
       </form>
     </section>
   );
