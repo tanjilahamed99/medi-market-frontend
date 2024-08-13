@@ -7,6 +7,7 @@ import { RxAvatar } from "react-icons/rx";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
+import AuthModal from "./AuthModal";
 
 const Navbar = () => {
   const handleClick = () => {
@@ -58,9 +59,9 @@ const Navbar = () => {
             tanjil.ahamed0199@gmail.com
           </h2>
           <div className="flex items-center gap-4 lg:gap-5">
-            <RxAvatar className="text-2xl font-semibold cursor-pointer" />
+            <AuthModal />
             <FaHeart className="text-2xl font-semibold cursor-pointer hidden lg:inline" />
-            <MdOutlineShoppingBag className="text-2xl font-semibold cursor-pointer" />
+            <MdOutlineShoppingBag className="text-3xl font-semibold cursor-pointer" />
             <FaBars className=" text-xl font-semibold cursor-pointer lg:hidden" />
           </div>
         </div>
