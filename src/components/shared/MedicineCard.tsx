@@ -47,12 +47,8 @@ const MedicineCard = ({ data }: any) => {
           </div>
 
           <Link href={`/productsDetails?id=${data?._id}`}>
-            {" "}
-            <button
-              className="border-b-2 border-black pb-[2px]  hover:text-primary-text
-           hover:border-primary-text text-primary-text font-semibold"
-            >
-              View Details
+            <button className="relative h-10 w-40 overflow-hidden border border-primary-text bg-white px-3 text-primary-text shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary-text before:transition-all before:duration-500 hover:text-white hover:shadow-primary-text hover:before:left-0 hover:before:w-full rounded-md mt-3">
+              <span className="relative z-10">View Details</span>
             </button>
           </Link>
         </div>

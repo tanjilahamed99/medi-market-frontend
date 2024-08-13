@@ -119,9 +119,9 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
             <div className="flex items-center gap-2">
               <button
                 onClick={handleDecrease}
-                className="px-2 py-1 bg-gray-200 rounded"
+                className="relative  overflow-hidden border border-primary-text bg-white px-3 text-primary-text shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary-text before:transition-all before:duration-500 hover:text-white hover:shadow-primary-text hover:before:left-0 hover:before:w-full rounded-md"
               >
-                -
+                <span className="relative z-10">-</span>
               </button>
               <input
                 type="number"
@@ -132,17 +132,18 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
               />
               <button
                 onClick={handleIncrease}
-                className="px-2 py-1 bg-gray-200 rounded"
+                className="relative  overflow-hidden border border-primary-text bg-white px-3 text-primary-text shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary-text before:transition-all before:duration-500 hover:text-white hover:shadow-primary-text hover:before:left-0 hover:before:w-full rounded-md"
               >
-                +
+                <span className="relative z-10">+</span>
               </button>
             </div>
 
+            {/* add to cart button */}
             <button
               onClick={handleSubmit}
-              className="bg-yellow-600 text-white py-2 px-5 rounded-md"
+              className="relative h-10 w-40 overflow-hidden border border-primary-text bg-white px-3 text-primary-text shadow-2xl transition-all before:absolute before:bottom-0 before:left-0 before:top-0 before:z-0 before:h-full before:w-0 before:bg-primary-text before:transition-all before:duration-500 hover:text-white hover:shadow-primary-text hover:before:left-0 hover:before:w-full rounded-md"
             >
-              Add to card
+              <span className="relative z-10">Add to cart</span>
             </button>
           </div>
 
@@ -179,9 +180,7 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
       </div>
 
       <div className="mt-16 px-2 xl:px-0">
-        <RelatedProducts
-          category={data?.product?.category}
-        />
+        <RelatedProducts category={data?.product?.category} />
       </div>
     </div>
   );
