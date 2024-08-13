@@ -1,5 +1,4 @@
 "use client";
-import { redirect } from "next/dist/server/api-utils";
 import { useState } from "react";
 import AuthInput from "../auth/AuthInput";
 import ConfirmOTP from "../auth/ConfirmOTP";
@@ -129,15 +128,12 @@ const Register = () => {
         role: "user",
         provider: "email/pass",
       });
-      console.log(data);
 
       const response = await signIn("credentials", {
         email,
         password: password1,
         role: "user",
       });
-
-      console.log(response);
 
       setLoading(false);
     } catch (err) {

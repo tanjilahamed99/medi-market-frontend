@@ -3,24 +3,18 @@ import axios from "axios";
 import React, { useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
-import { BASE_URL } from "@/constant/constant";
-import Input from "@/components/shared/Input";
-import Image from "next/image";
-import YellowBtn from "@/components/shared/buttons/YellowBtn";
-import { ImSpinner10 } from "react-icons/im";
 import SubmitBtn from "@/components/shared/buttons/SubmitBtn";
-import ErrorMessage from "../shared/error/ErrorMessage";
 import Link from "next/link";
 import AuthInput from "./AuthInput";
-import AuthHeader from "./AuthHeader";
 import RememberMe from "./RememberMe";
 import Socials from "./Socials";
-import toast from "react-hot-toast";
 import ConfirmOTP from "./ConfirmOTP";
 import SignUpWithPassword from "./SignUpWithPassword";
-import AuthContainer from "../containers/AuthContainer";
+import { BASE_URL } from "@/utils/url";
+import { AxiosError } from "axios";
+import ErrorMessage from "../shared/ErrorMessage";
 
-const Register = ({ role }) => {
+const Register = ({ role }: any) => {
   const [loading, setLoading] = useState(false);
   const [sendingOTP, setSendingOTP] = useState(false);
   const [confirmingOTP, setConfirmingOTP] = useState(false);
@@ -35,13 +29,11 @@ const Register = ({ role }) => {
 
   // console.log(session);
 
-  // if (session.status === "authenticated") {
-  //   redirect("/");
-  // }
+  if (session.status === "authenticated") {
+    redirect("/");
+  }
 
-  console.log(error);
-
-  const handleChange = (e) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUserData((prev) => ({
       ...prev,
@@ -49,14 +41,14 @@ const Register = ({ role }) => {
     }));
   };
 
-  const handleSendOTP = async (e) => {
+  const handleSendOTP = async (e: any) => {
     e?.preventDefault();
 
     if (sendingOTP) return;
 
     setError({ status: false, message: "" });
     setSendingOTP(true);
-    const { name, email } = userData || {};
+    const { name, email }: any = userData || {};
 
     if (!name || !email) {
       setError({ status: true, message: "Name or Email is required" });
@@ -76,30 +68,29 @@ const Register = ({ role }) => {
 
       if (data?.success) {
         setShowOTPScreen(true);
-        toast.success("OTP is sent!");
         return setSendingOTP(false);
       }
 
       setSendingOTP(false);
       setError({ status: true, message: "Unable to send otp!" });
-    } catch (error) {
+    } catch (err) {
+      const error = err as AxiosError;
       setError({
         status: true,
-        message: error.response.data.message,
-        type: error.response.data.type,
+        message: "",
       });
       setSendingOTP(false);
     }
   };
 
-  const handleValidateOTP = async (e) => {
+  const handleValidateOTP = async (e: any) => {
     e.preventDefault();
     if (confirmingOTP) return;
 
     setConfirmingOTP(true);
     setError({ status: false, message: "" });
 
-    const { email, otp } = userData || {};
+    const { email, otp }: any = userData || {};
     console.log(otp);
 
     if (!email || !otp) {
@@ -119,14 +110,15 @@ const Register = ({ role }) => {
       }
 
       setConfirmingOTP(false);
-    } catch (error) {
+    } catch (err) {
+      const error = err as AxiosError;
       console.log(error?.message);
-      setError({ status: true, message: error.response.data.message });
+      setError({ status: true, message: "" });
       setConfirmingOTP(false);
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (loading) return;
@@ -134,16 +126,13 @@ const Register = ({ role }) => {
     setLoading(true);
     setError({ status: false, message: "" });
 
-    // const name = e.target.name.value;
-    // const email = e.target.email.value;
-    // const password = e.target.password.value;
-    const { name, email, password1, password2 } = userData || {};
+    const { name, email, password1, password2 }: any = userData || {};
 
     if (password1 !== password2) {
       setLoading(false);
       return setError({
         status: true,
-        type: "not-matched-pass",
+        // type: "not-matched-pass",
         message: "Password doesn't matched!",
       });
     }
@@ -161,6 +150,7 @@ const Register = ({ role }) => {
         email,
         password: password1,
         role,
+        redirect: false,
       });
 
       if (!response?.error) {
@@ -173,67 +163,57 @@ const Register = ({ role }) => {
 
       setLoading(false);
     } catch (err) {
+      const error = err as AxiosError;
       setLoading(false);
 
-      if (err.message !== "NEXT_REDIRECT") {
-        setError({ status: true, message: err?.response?.data?.message });
+      if (error.message !== "NEXT_REDIRECT") {
+        setError({ status: true, message: "" });
       }
-      console.log(err.message);
+      console.log(error.message);
       redirect("/signin");
     }
   };
 
-  const handleGoogle = async () => {
-    try {
-      signIn("google");
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
   return (
-    <AuthContainer>
-      <section className="grid grid-cols-1 md:grid-cols-3 h-full gap-x-8  items-center">
-        <section className="relative  col-span-1 w-full h-full hidden md:block"></section>
-        {/* Sign Up Form  */}
-        <section className="md:col-span-2 flex flex-col gap-y-6 md:w-[85%] lg:w-4/5">
-          {showInitialScreen && (
-            <SendOTP
-              sendingOTP={sendingOTP}
-              handleSendOTP={handleSendOTP}
-              handleChange={handleChange}
-              error={error}
-            />
-          )}
-          {showOTPScreen && (
-            <ConfirmOTP
-              confirmingOTP={confirmingOTP}
-              sendingOTP={sendingOTP}
-              handleValidateOTP={handleValidateOTP}
-              handleChange={handleChange}
-              handleSendOTP={handleSendOTP}
-              error={error}
-            />
-          )}
-          {showPasswordScreen && (
-            <SignUpWithPassword
-              email={userData?.email}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              loading={loading}
-              error={error}
-            />
-          )}
-          {role === "user" && <Socials />}
-        </section>
+    <section className="grid grid-cols-1 md:grid-cols-3 h-full gap-x-8  items-center">
+      <section className="relative  col-span-1 w-full h-full hidden md:block"></section>
+      {/* Sign Up Form  */}
+      <section className="md:col-span-2 flex flex-col gap-y-6 md:w-[85%] lg:w-4/5">
+        {showInitialScreen && (
+          <SendOTP
+            sendingOTP={sendingOTP}
+            handleSendOTP={handleSendOTP}
+            handleChange={handleChange}
+            error={error}
+          />
+        )}
+        {showOTPScreen && (
+          <ConfirmOTP
+            confirmingOTP={confirmingOTP}
+            sendingOTP={sendingOTP}
+            handleValidateOTP={handleValidateOTP}
+            handleChange={handleChange}
+            handleSendOTP={handleSendOTP}
+            error={error}
+          />
+        )}
+        {showPasswordScreen && (
+          <SignUpWithPassword
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            loading={loading}
+            error={error}
+          />
+        )}
+        {role === "user" && <Socials />}
       </section>
-    </AuthContainer>
+    </section>
   );
 };
 
-function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }) {
+function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
   return (
     <section className="flex  flex-col gap-6">
-      <AuthHeader content="Sign up using" />
       <form onSubmit={handleSendOTP} className="flex  flex-col gap-y-4">
         <div className="flex  flex-col gap-y-4">
           <AuthInput
@@ -279,85 +259,3 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }) {
 }
 
 export default Register;
-
-{
-  /* <section className="w-[90%] mx-auto sm:w-[80%]  md:w-[70%] lg:w-[65%]">
-        <form
-          action=""
-          onSubmit={handleSubmit}
-          className="flex flex-col gap-y-4 "
-        >
-          <Input
-            name="name"
-            required
-            placeholder="Name"
-            className="w-2/3 px-2 py-2 border"
-            onChange={handleChange}
-          />
-          <Input
-            type="email"
-            name="email"
-            required
-            placeholder="Email"
-            className="w-2/3 px-2 py-2 border"
-            onChange={handleChange}
-          />
-
-          {showOTPScreen && (
-            <Input
-              type="number"
-              name="otp"
-              required
-              min={8}
-              placeholder="OTP"
-              className="w-2/3 px-2 py-2 border"
-              onChange={handleChange}
-            />
-          )}
-
-          {showPasswordScreen && (
-            <Input
-              type="password"
-              name="password"
-              required
-              min={8}
-              placeholder="Password"
-              className="w-2/3 px-2 py-2 border"
-              onChange={handleChange}
-            />
-          )}
-
-          <button
-            type={
-              (!showOTPScreen && !showPasswordScreen) || showOTPScreen
-                ? "button"
-                : "submit"
-            }
-            onClick={
-              !showOTPScreen && !showPasswordScreen
-                ? handleSendOTP
-                : showOTPScreen
-                ? handleValidateOTP
-                : ""
-            }
-            className="px-2 py-2 text-white bg-black w-fit"
-          >
-            {showOTPScreen && "Confirm OTP"}
-            {showPasswordScreen && "Submit"}
-            {!showOTPScreen && !showPasswordScreen && "Send OTP"}
-          </button>
-        </form>
-        <button
-          onClick={handleGoogle}
-          className="px-2 py-2 text-black border border-black bg-white w-fit"
-        >
-          Google
-        </button>
-        <button
-          onClick={() => signIn("facebook")}
-          className="px-2 py-2 text-black border border-black bg-white w-fit"
-        >
-          Facebook
-        </button>
-      </section>  */
-}

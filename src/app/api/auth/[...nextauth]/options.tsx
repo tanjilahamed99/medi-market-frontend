@@ -1,7 +1,5 @@
 import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
 import { BASE_URL } from "@/utils/url";
 
 export const options = {
@@ -23,6 +21,7 @@ export const options = {
             email,
             password,
           });
+
           const { status, data: user } = response.data;
 
           if (!status) {
@@ -45,7 +44,7 @@ export const options = {
   ],
   secret: "secret-top",
   callbacks: {
-    async signIn({ user, account }) {
+    async signIn({ user, account }: any) {
       if (["google", "facebook"].includes(account.provider)) {
         try {
           const response = await axios.post(`${BASE_URL}/auth/register`, {
@@ -74,18 +73,18 @@ export const options = {
 
       return true;
     },
-    async redirect({ url, baseUrl }) {
+    async redirect({ url, baseUrl }: any) {
       // Allows relative callback URLs
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       // Allows callback URLs on the same origin
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
     },
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       session.user = token?.user;
       return session;
     },
-    async jwt({ token, user, account }) {
+    async jwt({ token, user, account }: any) {
       if (account?.provider === "credentials") {
         const provider = "email/pass";
         try {
