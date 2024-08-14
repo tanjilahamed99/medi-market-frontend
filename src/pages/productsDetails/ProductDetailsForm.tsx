@@ -4,6 +4,8 @@ import RelatedProducts from "@/components/shared/RelatedProducts";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { useGetSingleProductsQuery } from "@/redux/rtk/fetchData";
 import { addItems } from "@/redux/slice/myCart/myCart";
+import { BASE_URL } from "@/utils/url";
+import axios from "axios";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -25,8 +27,6 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
   const { myCart } = useSelector((state: any) => state?.myCart);
   const { data: user } = useSession();
 
-  console.log(myCart?.myCartsData);
-
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
@@ -42,7 +42,7 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!user) {
       redirect("/");
     }
@@ -73,12 +73,6 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
       userName: user?.user?.name,
     };
 
-    Swal.fire({
-      title: "Good job!",
-      text: `You parches ${quantity}  ${data?.product?.name} at ${finalPrice}`,
-      icon: "success",
-    });
-
     if (myCart?.myCartsData?.length > 0) {
       if (exist) {
         const totalPrice = finalPrice + exist?.finalPrice;
@@ -105,8 +99,18 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
           userEmail: user?.user?.email,
           userName: user?.user?.name,
         };
-
-        dispatch(addItems(updatedData));
+        const { data: res } = await axios.post(
+          `${BASE_URL}/carts`,
+          updatedData
+        );
+        if (res?.status) {
+          dispatch(addItems(updatedData));
+          Swal.fire({
+            title: "Good job!",
+            text: `You parches ${quantity}  ${data?.product?.name} at ${finalPrice}`,
+            icon: "success",
+          });
+        }
       } else {
         const myData = {
           myCartsData: [
@@ -125,10 +129,26 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
           userEmail: user?.user?.email,
           userName: user?.user?.name,
         };
-        dispatch(addItems(myData));
+        const { data: res } = await axios.post(`${BASE_URL}/carts`, myData);
+        if (res?.status) {
+          dispatch(addItems(myData));
+          Swal.fire({
+            title: "Good job!",
+            text: `You parches ${quantity}  ${data?.product?.name} at ${finalPrice}`,
+            icon: "success",
+          });
+        }
       }
     } else {
-      dispatch(addItems(myData));
+      const { data: res } = await axios.post(`${BASE_URL}/carts`, myData);
+      if (res?.status) {
+        dispatch(addItems(myData));
+        Swal.fire({
+          title: "Good job!",
+          text: `You parches ${quantity}  ${data?.product?.name} at ${finalPrice}`,
+          icon: "success",
+        });
+      }
     }
   };
 
