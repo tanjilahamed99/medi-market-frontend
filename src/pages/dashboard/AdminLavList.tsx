@@ -2,11 +2,15 @@
 
 import { useSession } from "next-auth/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const AdminLavList = () => {
-  const { data: user } = useSession();
+  const { data: user, status } = useSession();
   const path = usePathname();
+  const router = useRouter();
+  if (status === "unauthenticated") {
+    router.push("/");
+  }
 
   return (
     <div className="flex flex-row flex-wrap lg:flex-col pl-6 py-2 gap-5 lg:gap-0">
