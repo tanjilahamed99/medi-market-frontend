@@ -17,8 +17,6 @@ const Orders = () => {
     role: user?.user?.role,
   });
 
-  console.log(ordersData?.data);
-
   if (isLoading) {
     return (
       <div className="flex items-center">
@@ -26,10 +24,6 @@ const Orders = () => {
       </div>
     );
   }
-
-  const view = (id: any) => {
-    router.push(`/productsDetails?id=${id}`);
-  };
 
   return (
     <div className="p-5">

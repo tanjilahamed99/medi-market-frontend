@@ -17,6 +17,10 @@ const Users = () => {
   });
   const router = useRouter();
 
+  if (user?.user?.role !== "superAdmin") {
+    router.push('/');
+  }
+
   if (isLoading) {
     return (
       <div className="flex items-center">
