@@ -8,8 +8,13 @@ import { FaHeart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import AuthModal from "./AuthModal";
 import MyCartModal from "./MyCartModal";
+import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const { data: user } = useSession();
+  const path = usePathname();
+
   const handleClick = () => {
     window.location.href = "mailto:tanjil.ahamed0199@gmail.com";
   };
@@ -68,38 +73,43 @@ const Navbar = () => {
       <hr className="border my-4 hidden lg:block w-full" />
 
       {/* navbar row 2 */}
-      <div className="hidden lg:flex justify-between items-center ">
-        <div className="flex items-center gap-2">
-          <h2 className="font-semibold text-primary-text text-lg">
-            Categories
-          </h2>
-          <FaBars className="cursor-pointer" />
-        </div>
-        {/* nav links */}
-        <div>
-          <ul className="flex items-center gap-5 text-primary-text font-semibold">
-            <Link className="hover:underline" href={"/"}>
-              <li>Home</li>
-            </Link>
-            <Link className="hover:underline" href={"/"}>
-              <li>Medical Supplies</li>
-            </Link>
 
-            <Link className="hover:underline" href={"/"}>
-              {" "}
-              <li>SHOP</li>
-            </Link>
-
-            <Link className="hover:underline" href={"/"}>
-              {" "}
-              <li>BLOG</li>
-            </Link>
-          </ul>
+      {path !== "/dashboard" && (
+        <div className="hidden lg:flex justify-between items-center ">
+          <div className="flex items-center gap-2">
+            <h2 className="font-semibold text-primary-text text-lg">
+              Categories
+            </h2>
+            <FaBars className="cursor-pointer" />
+          </div>
+          {/* nav links */}
+          <div>
+            <ul className="flex items-center gap-5 text-primary-text font-semibold">
+              <Link className="hover:underline" href={"/"}>
+                <li>Home</li>
+              </Link>
+              <Link className="hover:underline" href={"/shop"}>
+                {" "}
+                <li>SHOP</li>
+              </Link>
+              <Link className="hover:underline" href={"/"}>
+                {" "}
+                <li>BLOG</li>
+              </Link>
+              {user?.user?.role === "admin" ||
+                (user?.user?.role === "superAdmin" && (
+                  <Link className="hover:underline" href={"/dashboard"}>
+                    {" "}
+                    <li>Dashboard</li>
+                  </Link>
+                ))}
+            </ul>
+          </div>
+          <button className="bg-yellow-600 text-white py-2 px-4 rounded-lg">
+            Contact US
+          </button>
         </div>
-        <button className="bg-yellow-600 text-white py-2 px-4 rounded-lg">
-          Contact US
-        </button>
-      </div>
+      )}
     </div>
   );
 };

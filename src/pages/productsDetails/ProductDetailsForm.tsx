@@ -44,7 +44,13 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
 
   const handleSubmit = async () => {
     if (!user) {
-      redirect("/");
+      Swal.fire({
+        title: "Error!",
+        text: "Login First",
+        icon: "error",
+        confirmButtonText: "Cool",
+      });
+      return;
     }
 
     const exist = myCart?.myCartsData?.find(
