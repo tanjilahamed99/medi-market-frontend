@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { MdOutlineShoppingBag } from "react-icons/md";
+import { MdOutlineAttachMoney, MdOutlineShoppingBag } from "react-icons/md";
 import { useSelector } from "react-redux";
 
 const MyCartModal = () => {
@@ -87,7 +87,7 @@ const MyCartModal = () => {
                       <th className="px-4 py-3 border text-center font-normal whitespace-nowrap">
                         {i?.quantity}
                       </th>
-                      <th className="px-4 py-3 border text-center font-normal whitespace-nowrap">
+                      <th className="px-4 py-3 border text-center font-normal whitespace-nowrap ">
                         {parseInt(i?.finalPrice)}
                       </th>
                       <th className="px-4 py-3 border text-center font-normal whitespace-nowrap cursor-pointer">

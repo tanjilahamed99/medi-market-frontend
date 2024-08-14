@@ -52,10 +52,12 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
     );
     // Calculate total price without discount
     const totalPriceWithoutDiscount = data?.product?.price * quantity;
-    // Calculate total discount
-    const totalDiscount = data?.product?.discount * quantity;
-    // Calculate the final price after discount
+    const discountPercentage = data?.product?.discount;
+    const discountAmountPerProduct =
+      (data?.product?.price * discountPercentage) / 100;
+    const totalDiscount = discountAmountPerProduct * quantity;
     const finalPrice = totalPriceWithoutDiscount - totalDiscount;
+
     const myData = {
       myCartsData: [
         {
