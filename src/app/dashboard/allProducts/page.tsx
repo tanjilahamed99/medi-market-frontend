@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetAllProductsQuery } from "@/redux/rtk/fetchData";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const AllProducts = () => {
@@ -19,8 +18,6 @@ const AllProducts = () => {
   const view = (id: any) => {
     router.push(`/productsDetails?id=${id}`);
   };
-
-  console.log(data?.products);
 
   return (
     <div className="p-5">

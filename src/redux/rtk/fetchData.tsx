@@ -13,9 +13,30 @@ const fetchData = createApi({
     getSingleProducts: builder.query({
       query: (id) => `/product/single/${id}`,
     }),
+    getAllOders: builder.query({
+      query: (query) => {
+        const { adminId, adminEmail, role } = query;
+        return {
+          url: `/orders/${adminId}/${adminEmail}/${role}`,
+        };
+      },
+    }),
+    getAllUser: builder.query({
+      query: (query) => {
+        const { adminId, adminEmail, role } = query;
+        return {
+          url: `/user/allUsersData/${adminId}/${adminEmail}/${role}`,
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllProductsQuery, useGetSingleProductsQuery } = fetchData;
+export const {
+  useGetAllProductsQuery,
+  useGetSingleProductsQuery,
+  useGetAllOdersQuery,
+  useGetAllUserQuery,
+} = fetchData;
 
 export default fetchData;
