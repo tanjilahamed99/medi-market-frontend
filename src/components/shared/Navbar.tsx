@@ -97,12 +97,13 @@ const Navbar = () => {
                 <li>BLOG</li>
               </Link>
               {user?.user?.role === "admin" ||
-                (user?.user?.role === "superAdmin" && (
-                  <Link className="hover:underline" href={"/dashboard"}>
-                    {" "}
-                    <li>Dashboard</li>
-                  </Link>
-                ))}
+              user?.user?.role === "superAdmin" ? (
+                <Link className="hover:underline" href={"/dashboard"}>
+                  <li>Dashboard</li>
+                </Link>
+              ) : (
+                ""
+              )}
             </ul>
           </div>
           <button className="bg-yellow-600 text-white py-2 px-4 rounded-lg">
