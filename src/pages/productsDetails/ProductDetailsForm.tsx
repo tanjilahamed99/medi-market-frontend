@@ -3,11 +3,13 @@
 import RelatedProducts from "@/components/shared/RelatedProducts";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { useGetSingleProductsQuery } from "@/redux/rtk/fetchData";
+import { addItems } from "@/redux/slice/myCart/myCart";
 import Image from "next/image";
 import { useState } from "react";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Rating from "react-rating";
+import { useDispatch, useSelector } from "react-redux";
 
 interface ProductDetailsFormProps {
   id: string;
@@ -16,6 +18,9 @@ interface ProductDetailsFormProps {
 const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
   const { data, error } = useGetSingleProductsQuery(id);
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+  const { myCart } = useSelector((state: any) => state?.myCart);
+  console.log(myCart);
 
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -32,7 +37,14 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
     }
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+
+
+    
+
+
+    dispatch(addItems({ name: "hello", price: "200" }));
+  };
 
   if (!data) {
     return (

@@ -95,7 +95,7 @@ export const options = {
 
           token.user = response.data;
         } catch (error) {
-          console.error("Error fetching user data:", error.message);
+          console.error("Error fetching user data:", error?.message);
         }
       } else {
         if (user) {

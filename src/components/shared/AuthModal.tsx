@@ -10,20 +10,25 @@ import Image from "next/image";
 const AuthModal = () => {
   const [loginOpen, setLoginOpen] = useState(true);
   const { data: user, status } = useSession();
+  const openModal = () => {
+    const modal = document.getElementById("my_modal_3");
+    if (modal) {
+      (modal as HTMLDialogElement).showModal();
+    }
+  };
+
   return (
     <div>
-      <button
-        className="mt-2"
-        onClick={() => document?.getElementById("my_modal_3")?.showModal()}
-      >
+      <button className="mt-2" onClick={openModal}>
         {status === "authenticated" ? (
           <div>
-            {user?.user?.image ? (
+            {user?.user?.image?.includes("https") ? (
               <Image
                 src={user?.user?.image}
                 alt="profile image"
                 width={500}
                 height={500}
+                className="rounded-full w-10"
               />
             ) : (
               <RxAvatar className="text-4xl" />
@@ -36,7 +41,6 @@ const AuthModal = () => {
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box">
           <form method="dialog">
-            {/* if there is a button in form, it will close the modal */}
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
               ✕
             </button>
@@ -50,7 +54,7 @@ const AuthModal = () => {
                 className="btn border border-red-700"
                 onClick={() => signOut()}
               >
-                signOut{" "}
+                signOut
               </button>
             </div>
           ) : (

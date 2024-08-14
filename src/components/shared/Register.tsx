@@ -19,6 +19,7 @@ const Register = () => {
   const [showPasswordScreen, setShowPasswordScreen] = useState(false);
   const [error, setError] = useState({ status: false, message: "" });
   const showInitialScreen = !showOTPScreen && !showPasswordScreen;
+  468584;
 
   const handleChange = (e: any) => {
     const { name, value } = e.target;
@@ -109,7 +110,7 @@ const Register = () => {
     setLoading(true);
     setError({ status: false, message: "" });
 
-    const { name, email, password1, password2 }: any = userData || {};
+    const { name, email, password1, password2, image }: any = userData || {};
 
     if (password1 !== password2) {
       setLoading(false);
@@ -127,22 +128,24 @@ const Register = () => {
         email,
         role: "user",
         provider: "email/pass",
+        image,
       });
 
       const response = await signIn("credentials", {
         email,
         password: password1,
         role: "user",
+        image,
       });
 
       setLoading(false);
     } catch (err) {
       setLoading(false);
 
-      if (err.message !== "NEXT_REDIRECT") {
+      if (err?.message !== "NEXT_REDIRECT") {
         setError({ status: true, message: err?.response?.data?.message });
       }
-      console.log(err.message);
+      console.log(err?.message);
     }
   };
 
@@ -171,7 +174,6 @@ const Register = () => {
           )}
           {showPasswordScreen && (
             <SignUpWithPassword
-              email={userData?.email}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               loading={loading}
@@ -195,6 +197,15 @@ function SendOTP({ sendingOTP, handleSendOTP, handleChange, error }: any) {
             name="name"
             label="Name"
             placeholder="Name..."
+            readOnly={sendingOTP}
+          />
+
+          <AuthInput
+            onChange={handleChange}
+            id="image"
+            name="image"
+            label="Image"
+            placeholder="image url..."
             readOnly={sendingOTP}
           />
 

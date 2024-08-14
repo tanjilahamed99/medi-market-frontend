@@ -4,7 +4,6 @@ import AuthHeader from "./AuthHeader";
 import AuthInput from "./AuthInput";
 
 function SignUpWithPassword({
-  email,
   handleSubmit,
   handleChange,
   loading,
