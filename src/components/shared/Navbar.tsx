@@ -7,9 +7,9 @@ import { MdOutlineShoppingBag } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import { FaBars } from "react-icons/fa";
 import AuthModal from "./AuthModal";
+import MyCartModal from "./MyCartModal";
 
 const Navbar = () => {
-
   const handleClick = () => {
     window.location.href = "mailto:tanjil.ahamed0199@gmail.com";
   };
@@ -60,9 +60,7 @@ const Navbar = () => {
           </h2>
           <div className="flex items-center gap-4 lg:gap-5">
             <AuthModal />
-            <FaHeart className="text-2xl font-semibold cursor-pointer hidden lg:inline" />
-            <MdOutlineShoppingBag className="text-3xl font-semibold cursor-pointer" />
-            <FaBars className=" text-xl font-semibold cursor-pointer lg:hidden" />
+            <MyCartModal />
           </div>
         </div>
       </div>
