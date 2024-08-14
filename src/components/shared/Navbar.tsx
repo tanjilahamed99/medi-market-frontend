@@ -66,6 +66,35 @@ const Navbar = () => {
           <div className="flex items-center gap-4 lg:gap-5">
             <AuthModal />
             <MyCartModal />
+
+            <div className="dropdown dropdown-end">
+              <div tabIndex={0} role="button" className="">
+                <FaBars className="lg:hidden text-xl" />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content menu bg-base-100 rounded-box z-10 w-32 p-4 shadow flex flex-col gap-2"
+              >
+                <Link className="hover:underline" href={"/"}>
+                  <li>Home</li>
+                </Link>
+                <Link className="hover:underline" href={"/shop"}>
+                  {" "}
+                  <li>SHOP</li>
+                </Link>
+                <Link className="hover:underline" href={"/"}>
+                  <li>BLOG</li>
+                </Link>
+                {user?.user?.role === "admin" ||
+                user?.user?.role === "superAdmin" ? (
+                  <Link className="hover:underline" href={"/dashboard"}>
+                    <li>Dashboard</li>
+                  </Link>
+                ) : (
+                  ""
+                )}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -73,9 +102,8 @@ const Navbar = () => {
       <hr className="border my-4 hidden lg:block w-full" />
 
       {/* navbar row 2 */}
-
       {path !== "/dashboard" && (
-        <div className="hidden lg:flex justify-between items-center ">
+        <div className="hidden lg:flex justify-between items-center lg:px-2 xl:px-0">
           <div className="flex items-center gap-2">
             <h2 className="font-semibold text-primary-text text-lg">
               Categories
