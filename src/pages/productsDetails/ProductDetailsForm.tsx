@@ -4,12 +4,15 @@ import RelatedProducts from "@/components/shared/RelatedProducts";
 import SectionTitle from "@/components/shared/SectionTitle";
 import { useGetSingleProductsQuery } from "@/redux/rtk/fetchData";
 import { addItems } from "@/redux/slice/myCart/myCart";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 import { useState } from "react";
 import { IoStar, IoStarOutline } from "react-icons/io5";
 import { MdOutlineAttachMoney } from "react-icons/md";
 import Rating from "react-rating";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 interface ProductDetailsFormProps {
   id: string;
@@ -20,7 +23,9 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch = useDispatch();
   const { myCart } = useSelector((state: any) => state?.myCart);
-  console.log(myCart);
+  const { data: user } = useSession();
+
+  console.log(myCart?.myCartsData);
 
   const handleIncrease = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -38,12 +43,93 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
   };
 
   const handleSubmit = () => {
+    if (!user) {
+      redirect("/");
+    }
 
+    const exist = myCart?.myCartsData?.find(
+      (item: any) => item?.name === data?.product?.name
+    );
+    // Calculate total price without discount
+    const totalPriceWithoutDiscount = data?.product?.price * quantity;
+    // Calculate total discount
+    const totalDiscount = data?.product?.discount * quantity;
+    // Calculate the final price after discount
+    const finalPrice = totalPriceWithoutDiscount - totalDiscount;
+    const myData = {
+      myCartsData: [
+        {
+          images: data?.product?.images,
+          name: data?.product?.name,
+          type: data?.product?.type,
+          company: data?.product?.company,
+          description: data?.product?.description,
+          quantity,
+          finalPrice,
+          productsId: data?.product?._id,
+        },
+      ],
+      userEmail: user?.user?.email,
+      userName: user?.user?.name,
+    };
 
-    
+    Swal.fire({
+      title: "Good job!",
+      text: `You parches ${quantity}  ${data?.product?.name} at ${finalPrice}`,
+      icon: "success",
+    });
 
+    if (myCart?.myCartsData?.length > 0) {
+      if (exist) {
+        const totalPrice = finalPrice + exist?.finalPrice;
+        const maxQuantity = exist?.quantity + quantity;
 
-    dispatch(addItems({ name: "hello", price: "200" }));
+        const filterData = myCart?.myCartsData.filter(
+          (item: any) => item.name !== data?.product?.name
+        );
+
+        const updatedData = {
+          myCartsData: [
+            {
+              images: data?.product?.images,
+              name: data?.product?.name,
+              type: data?.product?.type,
+              company: data?.product?.company,
+              description: data?.product?.description,
+              quantity: maxQuantity,
+              finalPrice: totalPrice,
+              productsId: data?.product?._id,
+            },
+            ...filterData,
+          ],
+          userEmail: user?.user?.email,
+          userName: user?.user?.name,
+        };
+
+        dispatch(addItems(updatedData));
+      } else {
+        const myData = {
+          myCartsData: [
+            {
+              images: data?.product?.images,
+              name: data?.product?.name,
+              type: data?.product?.type,
+              company: data?.product?.company,
+              description: data?.product?.description,
+              quantity,
+              finalPrice,
+              productsId: data?.product?._id,
+            },
+            ...myCart?.myCartsData,
+          ],
+          userEmail: user?.user?.email,
+          userName: user?.user?.name,
+        };
+        dispatch(addItems(myData));
+      }
+    } else {
+      dispatch(addItems(myData));
+    }
   };
 
   if (!data) {
@@ -141,6 +227,7 @@ const ProductDetailsForm: React.FC<ProductDetailsFormProps> = ({ id }) => {
                 onChange={handleInputChange}
                 className="w-12 text-center border border-gray-300 rounded no-spinner"
                 min="1"
+                max={data?.products?.quantity}
               />
               <button
                 onClick={handleIncrease}

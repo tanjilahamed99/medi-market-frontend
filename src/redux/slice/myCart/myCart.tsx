@@ -13,7 +13,11 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 // );
 
 const initialState = {
-  myCart: [],
+  myCart: {
+    userEmail: "",
+    userName: "",
+    myCartsData: [],
+  },
   isPending: true,
   isRejected: false,
 };
@@ -23,7 +27,10 @@ const myCartSlice = createSlice({
   initialState,
   reducers: {
     addItems: (state: any, { payload }: any) => {
-      state.myCart = [payload];
+      const { userName, userEmail, myCartsData } = payload;
+      state.myCart.myCartsData = [...myCartsData];
+      state.myCart.userName = userName;
+      state.myCart.userEmail = userEmail;
     },
   },
   //   extraReducers: (builder: any) => {
